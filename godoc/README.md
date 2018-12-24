@@ -9,4 +9,4 @@ Example:
   godoc -http=":6060"
 ```
 
-Then point your web browser at http://localhost:6060
+Then point your web browser at http://localhost:6060/pkg/github.com/kirk-patton/example-go/godoc to see this example
