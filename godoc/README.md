@@ -1,4 +1,4 @@
-godoc - is a means to easily add simple comments to your source coude and have them render at https://godoc.org/
+godoc - is a means to easily add simple comments to your source code and have them render at https://godoc.org/
 
 You can run a local godoc server quite easliy by running;
 
