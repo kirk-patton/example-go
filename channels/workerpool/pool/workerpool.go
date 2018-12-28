@@ -1,7 +1,7 @@
 package pool
 
 import (
-	"fmt"
+	"strings"
 	"sync"
 )
 
@@ -45,7 +45,8 @@ func (w *Worker) Start() {
 		// check for data on either channel
 		select {
 		case work = <-w.todo:
-			fmt.Printf("TODO: Goto work: %s\n", work.Before)
+			work.After = strings.ToUpper(work.Before)
+			w.results <- work
 		case <-w.stop:
 			stop = true
 		}
@@ -78,7 +79,7 @@ func New(workers int) *Pool {
 		Stop:    stop,
 	}
 
-	for i := 0; i <= workers; i++ {
+	for i := 0; i < workers; i++ {
 		w := &Worker{
 			waiter:  wg,
 			todo:    input,
