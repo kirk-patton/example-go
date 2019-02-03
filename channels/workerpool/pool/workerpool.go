@@ -1,8 +1,10 @@
 package pool
 
 import (
-	"strings"
+	"fmt"
 	"sync"
+
+	"github.com/golang/example/stringutil"
 )
 
 // Work - data to process
@@ -45,9 +47,11 @@ func (w *Worker) Start() {
 		// check for data on either channel
 		select {
 		case work = <-w.todo:
-			work.After = strings.ToUpper(work.Before)
+			fmt.Printf("Doing some work... input:%s\n", work.Before)
+			work.After = stringutil.Reverse(work.Before)
 			w.results <- work
 		case <-w.stop:
+			fmt.Println("worker told to stop")
 			stop = true
 		}
 	}
