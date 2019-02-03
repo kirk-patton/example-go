@@ -3,6 +3,7 @@ package pool
 import (
 	"fmt"
 	"sync"
+	"github.com/golang/example/stringutil"
 )
 
 // Work - data to process
@@ -46,6 +47,7 @@ func (w *Worker) Start() {
 		select {
 		case work = <-w.todo:
 			fmt.Printf("Doing some work... input:%s\n", work.Before)
+			w.Results <- stringutil.Reverse(work.Before)
 		case <-w.stop:
 			fmt.Println("worker told to stop")
 			stop = true
