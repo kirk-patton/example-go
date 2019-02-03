@@ -47,6 +47,7 @@ func (w *Worker) Start() {
 		case work = <-w.todo:
 			fmt.Printf("TODO: Goto work: %s\n", work.Before)
 		case <-w.stop:
+			fmt.Printfln("worker told to stop")
 			stop = true
 		}
 	}
