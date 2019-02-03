@@ -47,7 +47,8 @@ func (w *Worker) Start() {
 		select {
 		case work = <-w.todo:
 			fmt.Printf("Doing some work... input:%s\n", work.Before)
-			w.results <- stringutil.Reverse(work.Before)
+			work.After = stringutil.Reverse(work.Before)
+			w.results <- work
 		case <-w.stop:
 			fmt.Println("worker told to stop")
 			stop = true
