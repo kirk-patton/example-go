@@ -45,7 +45,7 @@ func (w *Worker) Start() {
 		// check for data on either channel
 		select {
 		case work = <-w.todo:
-			fmt.Printf("TODO: Goto work: %s\n", work.Before)
+			fmt.Printf("Doing some work... input:%s\n", work.Before)
 		case <-w.stop:
 			fmt.Println("worker told to stop")
 			stop = true
